@@ -22,7 +22,7 @@
 
 <h2>Comments</h2>
 <% if @comments.any? %>
-  <% @comments.select {|comment| comment.id }.each do | comment | %>
+  <% @comments.each do | comment | %>
     <div class="mb-3">
       <p><strong><%= comment.user_name %></strong></p>
       <p><%= comment.body %></p>
