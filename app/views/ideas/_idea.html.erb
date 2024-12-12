@@ -1,0 +1,11 @@
+<div id="<%= dom_id idea %>" class="list-group-item list-group-item-action d-flex gap-3 py-3">
+  <div class="d-flex flex-column gap-2 w-100">
+    <h2><%= link_to idea.name, idea %></h2>
+    <p><%= idea.description %></p>
+    <small class="opacity-50 text-nowrap">Last updated <%= time_ago_in_words idea.updated_at %></small>
+  </div>
+
+  <% if idea.picture.attached? %>
+    <%= image_tag(url_for(idea.picture), height: 150, width: 150, class: "img-thumbnail flex-shrink-0") %>
+  <% end %>
+</div>
