@@ -1,3 +1,7 @@
+# frozen_string_literal: true
+
+# CommentsController
+# コメントの登録、削除を行う
 class CommentsController < ApplicationController
   before_action :set_idea, only: %i[create destroy]
   before_action :set_comment, only: %i[destroy]
@@ -5,7 +9,7 @@ class CommentsController < ApplicationController
   def create
     @comment = @idea.comments.new(comment_params)
     if @comment.save
-      redirect_to idea_path(@idea), notice: "Comment was successfully created."
+      redirect_to idea_path(@idea), notice: 'Comment was successfully created.'
     else
       render :new, status: :unprocessable_entity
     end
@@ -14,7 +18,7 @@ class CommentsController < ApplicationController
   def destroy
     @comment.destroy!
 
-    redirect_to idea_path(@idea), notice: "Comment was successfully destroyed."
+    redirect_to idea_path(@idea), notice: 'Comment was successfully destroyed.'
   end
 
   private
