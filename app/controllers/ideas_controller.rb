@@ -30,7 +30,6 @@ class IdeasController < ApplicationController
         format.html { redirect_to @idea, notice: "Idea was successfully created." }
         format.json { render :show, status: :created, location: @idea }
       else
-        debugger
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @idea.errors, status: :unprocessable_entity }
       end
