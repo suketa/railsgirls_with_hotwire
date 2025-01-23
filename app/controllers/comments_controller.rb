@@ -9,7 +9,8 @@ class CommentsController < ApplicationController
   def create
     @comment = @idea.comments.new(comment_params)
     if @comment.save
-      redirect_to idea_path(@idea), notice: 'Comment was successfully created.'
+      # redirect_to idea_path(@idea), notice: 'Comment was successfully created.'
+      render :create, status: :created
     else
       render :new, status: :unprocessable_entity
     end
