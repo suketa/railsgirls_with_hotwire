@@ -6,3 +6,4 @@
       form: { data: { turbo_confirm: "Are your sure" } } %>
   </div>
 <% end %>
+<%= turbo_stream.replace "new_comment", partial: "comments/form", locals: { idea: @idea, comment: Comment.new } %>
