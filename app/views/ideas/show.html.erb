@@ -24,12 +24,7 @@
 <%= turbo_frame_tag "comments" do %>
   <% if @comments.any? %>
     <% @comments.each do | comment | %>
-      <div class="mb-3">
-        <p><strong><%= comment.user_name %></strong></p>
-        <p><%= comment.body %></p>
-        <%= button_to "Destroy this comment", idea_comment_path(@idea, comment), method: :delete, class: "btn btn-danger",
-          form: { data: { turbo_confirm: "Are your sure" } } %>
-      </div>
+      <%= render "comments/comment", comment: comment, idea: @idea %>
     <% end %>
   <% else %>
     <p>No comments found.</p>
