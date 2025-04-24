@@ -19,7 +19,7 @@ class CommentsController < ApplicationController
   def destroy
     @comment.destroy!
 
-    redirect_to idea_path(@idea), notice: 'Comment was successfully destroyed.'
+    render :destroy, status: :ok
   end
 
   private
