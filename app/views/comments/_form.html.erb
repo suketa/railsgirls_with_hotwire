@@ -1,4 +1,4 @@
-<%= turbo_frame_tag "new_comment" do %>
+<%= turbo_frame_tag comment do %>
   <%= form_with(model: [idea, comment]) do |form| %>
     <% if comment.errors.any? %>
       <div style="color: red">

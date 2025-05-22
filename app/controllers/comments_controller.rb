@@ -3,8 +3,8 @@
 # CommentsController
 # コメントの登録、削除を行う
 class CommentsController < ApplicationController
-  before_action :set_idea, only: %i[create destroy]
-  before_action :set_comment, only: %i[destroy]
+  before_action :set_idea, only: %i[create edit update destroy]
+  before_action :set_comment, only: %i[edit update destroy]
 
   def create
     @comment = @idea.comments.new(comment_params)
@@ -13,6 +13,18 @@ class CommentsController < ApplicationController
       render :create, status: :created
     else
       render :new, status: :unprocessable_entity
+    end
+  end
+
+  def edit
+  end
+
+  def update
+    @comment.assign_attributes(comment_params)
+    if @comment.save
+      render :show
+    else
+      render :edit
     end
   end
 
