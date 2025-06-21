@@ -20,6 +20,9 @@
       form: { data: { turbo_confirm: "Are your sure" } } %>
 </div>
 
+<h2>Add a new comment</h2>
+<%= render partial: "comments/form", locals: { idea: @idea, comment: @comment} %>
+
 <h2>Comments</h2>
 <%= turbo_frame_tag "comments" do %>
   <% if @comments.any? %>
@@ -30,6 +33,3 @@
     <p>No comments found.</p>
   <% end %>
 <% end %>
-
-<h2>Add a new comment</h2>
-<%= render partial: "comments/form", locals: { idea: @idea, comment: @comment} %>
