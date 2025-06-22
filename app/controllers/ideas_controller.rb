@@ -8,7 +8,7 @@ class IdeasController < ApplicationController
 
   # GET /ideas/1 or /ideas/1.json
   def show
-    @comments = @idea.comments
+    @comments = @idea.comments.recent
     @comment = Comment.new(idea: @idea)
   end
 
