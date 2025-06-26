@@ -10,6 +10,17 @@ class IdeasController < ApplicationController
   def show
     @comments = @idea.comments.recent
     @comment = Comment.new(idea: @idea)
+    
+    respond_to do |format|
+      format.html
+      format.turbo_stream do
+        page = params[:page].to_i
+        offset = (page - 1) * 5
+        @more_comments = @idea.comments.recent.offset(offset).limit(5)
+        @has_more = @idea.comments.recent.count > offset + 5
+        render :load_more_comments
+      end
+    end
   end
 
   # GET /ideas/new

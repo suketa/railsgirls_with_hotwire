@@ -24,12 +24,28 @@
 <%= render partial: "comments/form", locals: { idea: @idea, comment: @comment} %>
 
 <h2>Comments</h2>
-<%= turbo_frame_tag "comments" do %>
-  <% if @comments.any? %>
-    <% @comments.each do | comment | %>
-      <%= render "comments/comment", comment: comment, idea: @idea %>
+<div data-controller="infinite-scroll" 
+     data-infinite-scroll-url-value="<%= idea_path(@idea) %>"
+     data-infinite-scroll-page-value="1">
+  
+  <%= turbo_frame_tag "comments" do %>
+    <div data-infinite-scroll-target="container">
+      <% if @comments.any? %>
+        <% @comments.limit(5).each do | comment | %>
+          <%= render "comments/comment", comment: comment, idea: @idea %>
+        <% end %>
+      <% else %>
+        <p>No comments found.</p>
+      <% end %>
+    </div>
+    
+    <% if @comments.count > 5 %>
+      <div data-infinite-scroll-target="trigger" class="text-center py-3" id="infinite-scroll-trigger">
+        <div class="spinner-border spinner-border-sm" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+        <p class="mt-2">スクロールして続きを読み込み...</p>
+      </div>
     <% end %>
-  <% else %>
-    <p>No comments found.</p>
   <% end %>
-<% end %>
+</div>
